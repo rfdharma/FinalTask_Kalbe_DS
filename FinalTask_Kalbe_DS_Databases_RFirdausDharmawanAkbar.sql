@@ -7,10 +7,18 @@ GROUP BY "Marital Status" ;
 
 --query 2 : Berapa rata-rata umur customer jika dilihat dari gender nya ?
 
-SELECT "gender" , AVG("age") AS "rata_rata_umur"
-FROM "Customer" c 
-WHERE "age" IS NOT NULL
-GROUP BY "gender";
+SELECT
+    CASE 
+        WHEN "gender" = 0 THEN 'Wanita'
+        WHEN "gender" = 1 THEN 'Pria'
+    END AS "gender",
+    AVG("age") AS "rata_rata_umur"
+FROM
+    "Customer" c
+WHERE
+    "age" IS NOT NULL
+GROUP BY
+    "gender";
 
 --query 3 : Tentukan nama store dengan total quantity terbanyak!
 --Menampilkan 5 nama store teratas
